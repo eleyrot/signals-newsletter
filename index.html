@@ -3,246 +3,611 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Speicher direkt — Gemeinde-Newsletter</title>
-  <meta name="description" content="Kostenloser Newsletter der Gemeinde Speicher AR. Amtsblatt, Gemeinderat, Bauprojekte, Abstimmungen, Agenda und Vereine — direkt in dein Postfach.">
+  <title>Signals — KI, Tech & Finanzen auf Deutsch</title>
+  <meta name="description" content="Der kuratierte deutsche Newsletter für KI, Tech und Finanzen. Internationale Quellen, automatisch zusammengefasst. Kostenlos abonnieren.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --black:   #07080d;
+      --surface: #0d0e15;
+      --border:  rgba(255,255,255,.07);
+      --gold:    #c9a55a;
+      --gold-dim:#7a6135;
+      --text:    #e4e0d8;
+      --muted:   #5a5850;
+      --light-bg:#f7f6f2;
+      --light-border:#e8e4da;
+      --dark-text:#0f0e0b;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+
     body {
-      background: #1c1a14;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: var(--black);
+      font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 300;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
-    input[type=email], input[type=text] { outline: none; }
-    input[type=email]:focus, input[type=text]:focus { border-color: #b07a3c !important; }
-    ::placeholder { color: #b0a898; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
+
+    /* ── TYPOGRAPHY ── */
+    .serif { font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+    .reveal-d4 { transition-delay: .4s; }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 52px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid transparent;
+      transition: border-color .4s, background .4s, backdrop-filter .4s;
+    }
+    nav.scrolled {
+      border-color: var(--border);
+      background: rgba(7,8,13,.8);
+      backdrop-filter: blur(20px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px; font-weight: 600; font-style: italic;
+      color: var(--text); letter-spacing: .02em;
+    }
+    .nav-pill {
+      display: flex; align-items: center; gap: 7px;
+      padding: 5px 14px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 11px; font-weight: 400; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .live-dot {
+      width: 5px; height: 5px;
+      background: #6ee7a0; border-radius: 50%;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .hero-glow {
+      position: absolute; top: -30%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201,165,90,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-line {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 400; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 36px;
+    }
+    .hero-tag::before, .hero-tag::after {
+      content: ''; display: block; width: 24px; height: 1px; background: var(--gold-dim);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 600; font-style: italic;
+      line-height: 1.06; letter-spacing: -.01em;
+      color: var(--text);
+      max-width: 780px; margin: 0 auto 12px;
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 400; font-style: italic;
+      color: var(--muted); margin-bottom: 52px;
+      letter-spacing: .01em;
+    }
+    .hero-badges {
+      display: flex; justify-content: center; gap: 32px;
+      flex-wrap: wrap; margin-bottom: 52px;
+    }
+    .hero-badge {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 300; color: #3a3830;
+    }
+    .hero-badge::before {
+      content: ''; width: 4px; height: 4px;
+      background: var(--gold-dim); border-radius: 50;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px;
+      border: 1px solid var(--gold-dim);
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 400; letter-spacing: .08em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--gold);
+      background: transparent;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, color .25s;
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform .3s cubic-bezier(.22,1,.36,1);
+    }
+    .btn-primary:hover { color: var(--black); border-color: var(--gold); }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; }
+
+    /* Sources strip */
+    .sources {
+      position: absolute; bottom: 40px; left: 0; right: 0;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .sources-label {
+      font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #252420;
+    }
+    .sources-list {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;
+    }
+    .sources-list span {
+      font-size: 11.5px; font-weight: 300; color: #2a2820; letter-spacing: .04em;
+    }
+    .sources-list .sep { color: #1a1914; }
+
+    /* ── TOPICS PREVIEW ── */
+    .topics-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 24px;
+    }
+    .topics-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .topic-card {
+      background: var(--surface);
+      padding: 40px 36px;
+      transition: background .3s;
+    }
+    .topic-card:hover { background: #111219; }
+    .topic-icon {
+      font-size: 28px; margin-bottom: 20px; display: block;
+      filter: grayscale(0.2);
+    }
+    .topic-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px; font-weight: 600;
+      color: var(--text); margin-bottom: 10px; letter-spacing: .01em;
+    }
+    .topic-desc {
+      font-size: 13px; font-weight: 300; line-height: 1.7;
+      color: var(--muted);
+    }
+    .topic-count {
+      margin-top: 20px;
+      font-size: 11px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold-dim);
+    }
+    @media (max-width: 640px) {
+      .topics-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FORM ── */
+    .form-section {
+      background: var(--light-bg);
+      padding: 96px 24px;
+    }
+    .form-eyebrow {
+      font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px; text-align: center;
+    }
+    .form-section h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(36px, 5vw, 54px);
+      font-weight: 600; font-style: italic;
+      color: var(--dark-text); text-align: center;
+      letter-spacing: -.01em; margin-bottom: 12px;
+    }
+    .form-section .sub {
+      font-size: 15px; font-weight: 300; line-height: 1.7;
+      color: #6b6858; text-align: center; margin-bottom: 56px;
+    }
+    .form-card {
+      max-width: 520px; margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--light-border);
+      padding: 44px;
+    }
+    .form-label {
+      display: block; font-size: 10px; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: #9a9282; margin-bottom: 12px;
+    }
+    .topic-btns {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
     }
     .btn-topic {
-      padding: 10px 18px;
-      border-radius: 100px;
+      padding: 9px 18px;
       background: transparent;
-      border: 2px solid #d4c4a0;
-      color: #4a463d;
+      border: 1px solid #d8d0c4;
+      color: #7a7060;
       cursor: pointer;
-      font-size: 13.5px;
-      font-weight: 600;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      white-space: nowrap;
-      transition: all .15s;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 300; letter-spacing: .03em;
+      transition: all .2s;
     }
     .btn-topic.selected {
-      background: #b07a3c;
-      border-color: #b07a3c;
+      background: var(--dark-text);
+      border-color: var(--dark-text);
       color: #fff;
     }
     .btn-topic:hover:not(.selected) {
-      border-color: #b07a3c;
-      color: #b07a3c;
+      border-color: var(--dark-text);
+      color: var(--dark-text);
+    }
+    .field-group { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+    .field { display: flex; flex-direction: column; }
+    input[type=text], input[type=email] {
+      padding: 13px 16px;
+      border: 1px solid #ddd8ce;
+      background: #fdfcfa;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 300;
+      color: var(--dark-text);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input[type=text]:focus, input[type=email]:focus {
+      border-color: var(--dark-text);
+      box-shadow: 0 0 0 3px rgba(15,14,11,.06);
+    }
+    ::placeholder { color: #bdb5a8; }
+    #error-box {
+      display: none; margin-bottom: 16px; padding: 10px 14px;
+      background: #fff5f5; border-left: 2px solid #c84b4b;
+      font-size: 13px; font-weight: 300; color: #8b2a2a;
+    }
+    .btn-submit {
+      width: 100%; padding: 16px;
+      background: var(--dark-text); border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 400; letter-spacing: .1em;
+      text-transform: uppercase; color: #fff;
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-submit:hover { background: #1e1d18; }
+    .form-trust {
+      margin-top: 14px; text-align: center;
+      font-size: 11.5px; font-weight: 300; color: #bdb5a8; letter-spacing: .02em;
+    }
+    .success-state {
+      display: none; text-align: center; padding: 24px 0;
+    }
+    .success-icon {
+      width: 52px; height: 52px; background: #f5f2eb;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .success-state h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px; font-weight: 600; font-style: italic;
+      color: var(--dark-text); margin-bottom: 10px;
+    }
+    .success-state p {
+      font-size: 14px; font-weight: 300; line-height: 1.7;
+      color: #7a7060;
+    }
+
+    /* ── WHY ── */
+    .why-section {
+      background: var(--black);
+      padding: 96px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .why-section h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(34px, 4.5vw, 52px);
+      font-weight: 600; font-style: italic;
+      color: var(--text); text-align: center;
+      margin-bottom: 64px; letter-spacing: -.01em;
+    }
+    .why-grid {
+      max-width: 840px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .why-card {
+      background: var(--black); padding: 40px 32px;
+      transition: background .3s;
+    }
+    .why-card:hover { background: var(--surface); }
+    .why-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 42px; font-weight: 400; font-style: italic;
+      color: var(--gold-dim); margin-bottom: 20px; line-height: 1;
+    }
+    .why-title {
+      font-size: 14px; font-weight: 500; letter-spacing: .04em;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .why-text {
+      font-size: 13px; font-weight: 300; line-height: 1.75;
+      color: var(--muted);
+    }
+    @media (max-width: 640px) {
+      .why-grid { grid-template-columns: 1fr; }
+      nav { padding: 18px 24px; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); padding: 44px 24px;
+      border-top: 1px solid var(--border); text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px; font-weight: 600; font-style: italic;
+      color: var(--muted); margin-bottom: 14px;
+    }
+    footer p {
+      font-size: 11.5px; font-weight: 300; color: #252420;
+      letter-spacing: .04em; line-height: 2;
+    }
+    footer a { color: #252420; text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+
+    /* ── DIVIDER LINE ── */
+    .section-line {
+      width: 40px; height: 1px; background: var(--gold-dim);
+      margin: 0 auto 32px;
     }
   </style>
 </head>
 <body>
 
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="nav-logo">Signals</div>
+  <div class="nav-pill">
+    <span class="live-dot"></span>
+    Täglich aktualisiert
+  </div>
+</nav>
+
 <!-- ── HERO ── -->
-<section style="background:#1c1a14; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 24px 64px; position:relative;">
+<section class="hero">
+  <div class="hero-glow"></div>
 
-  <!-- Nav -->
-  <nav style="position:absolute; top:0; left:0; right:0; padding:24px 48px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,.06);">
-    <div style="font:700 18px/1 'Playfair Display',Georgia,serif; color:#f7f3ea; letter-spacing:-0.01em;">Speicher direkt</div>
-    <div style="font:400 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; color:#6b6458;">Gemeinde Speicher · AR</div>
-  </nav>
+  <div class="hero-tag reveal">KI · Tech · Finanzen</div>
 
-  <!-- Content -->
-  <div style="max-width:680px; width:100%; text-align:center; animation:fadeUp .7s ease both;">
-    <div style="font:400 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.2em; text-transform:uppercase; color:#b07a3c; margin-bottom:28px;">Kostenloser Newsletter · Gemeinde Speicher</div>
-    <h1 style="font:700 58px/1.08 'Playfair Display',Georgia,serif; color:#f7f3ea; letter-spacing:-0.02em; margin-bottom:24px;">Was dein Dorf bewegt — direkt in dein Postfach.</h1>
-    <p style="font-size:18px; line-height:1.65; color:#a89c84; max-width:520px; margin:0 auto 40px;">Amtsblatt, Gemeinderat, Bauprojekte, Abstimmungen, Agenda, Vereine — automatisiert zusammengefasst aus offiziellen Quellen. Du wählst, was dich interessiert.</p>
+  <h1 class="reveal reveal-d1">
+    Die wichtigsten<br><em>Signale.</em>
+  </h1>
 
-    <div style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin-bottom:48px;">
-      <div style="display:flex; align-items:center; gap:8px; color:#d4c8b0; font-size:14px;"><div style="width:6px;height:6px;background:#b07a3c;border-radius:50%;"></div>100% kostenlos</div>
-      <div style="display:flex; align-items:center; gap:8px; color:#d4c8b0; font-size:14px;"><div style="width:6px;height:6px;background:#b07a3c;border-radius:50%;"></div>Nur offizielle Quellen</div>
-      <div style="display:flex; align-items:center; gap:8px; color:#d4c8b0; font-size:14px;"><div style="width:6px;height:6px;background:#b07a3c;border-radius:50%;"></div>Jederzeit abmeldbar</div>
-    </div>
+  <p class="hero-sub reveal reveal-d2">Auf Deutsch. Jeden Monat.</p>
 
-    <a href="#form" style="display:inline-flex; align-items:center; gap:10px; font:600 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#fff; background:#b07a3c; text-decoration:none; padding:16px 32px; border-radius:100px; letter-spacing:.01em;">
-      Jetzt gratis abonnieren
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+  <div class="hero-badges reveal reveal-d3">
+    <div class="hero-badge">Kostenlos starten</div>
+    <div class="hero-badge">Internationale Quellen</div>
+    <div class="hero-badge">Jederzeit abmeldbar</div>
   </div>
 
-  <div style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to bottom,transparent,#f7f3ea);"></div>
+  <a href="#form" class="btn-primary reveal reveal-d4">
+    <span>Jetzt abonnieren</span>
+    <span>↓</span>
+  </a>
+
+  <div class="sources">
+    <div class="sources-label">Quellen</div>
+    <div class="sources-list">
+      <span>OpenAI</span><span class="sep">·</span>
+      <span>TechCrunch</span><span class="sep">·</span>
+      <span>HuggingFace</span><span class="sep">·</span>
+      <span>Handelsblatt</span><span class="sep">·</span>
+      <span>cash.ch</span><span class="sep">·</span>
+      <span>Hacker News</span>
+    </div>
+  </div>
+
+  <div class="hero-line"></div>
+</section>
+
+<!-- ── TOPICS ── -->
+<section class="topics-section">
+  <div style="text-align:center;margin-bottom:52px;">
+    <div class="section-line reveal"></div>
+    <h2 class="serif reveal" style="font-size:clamp(28px,3.5vw,40px);font-weight:600;font-style:italic;color:var(--text);letter-spacing:-.01em;">Drei Themen. Eine Ausgabe.</h2>
+    <p class="reveal reveal-d1" style="font-size:14px;font-weight:300;color:var(--muted);margin-top:12px;">Du wählst, was du liest — der Rest bleibt verborgen.</p>
+  </div>
+  <div class="topics-grid">
+    <div class="topic-card reveal">
+      <span class="topic-icon">◈</span>
+      <div class="topic-title">Künstliche Intelligenz</div>
+      <div class="topic-desc">Neue Modelle, Forschungsdurchbrüche, Unternehmensstrategien — aus OpenAI, Anthropic, HuggingFace und mehr.</div>
+      <div class="topic-count">OpenAI · HuggingFace · TechCrunch AI</div>
+    </div>
+    <div class="topic-card reveal reveal-d1">
+      <span class="topic-icon">◇</span>
+      <div class="topic-title">Technologie</div>
+      <div class="topic-desc">Startups, Produktlaunches, Tech-Industrie — die wichtigsten Entwicklungen der Welt, auf Deutsch zusammengefasst.</div>
+      <div class="topic-count">TechCrunch · Hacker News · The Verge</div>
+    </div>
+    <div class="topic-card reveal reveal-d2">
+      <span class="topic-icon">◉</span>
+      <div class="topic-title">Finanzen</div>
+      <div class="topic-desc">Märkte, Makroökonomie, Investmenttrends — vom Handelsblatt bis zu internationalen Finanzquellen.</div>
+      <div class="topic-count">Handelsblatt · cash.ch · Yahoo Finance</div>
+    </div>
+  </div>
 </section>
 
 <!-- ── FORM ── -->
-<section id="form" style="background:#f7f3ea; padding:72px 24px 80px;">
-  <div style="max-width:600px; margin:0 auto;">
+<section id="form" class="form-section">
+  <div class="form-eyebrow reveal">Kostenlos abonnieren</div>
+  <h2 class="reveal reveal-d1">In 60 Sekunden dabei.</h2>
+  <p class="sub reveal reveal-d2">Wähle deine Themen — du erhältst nur, was dich interessiert.</p>
 
-    <div style="text-align:center; margin-bottom:48px;">
-      <h2 style="font:700 36px/1.12 'Playfair Display',Georgia,serif; color:#1a1a18; letter-spacing:-0.02em; margin-bottom:12px;">In 60 Sekunden dabei.</h2>
-      <p style="font-size:16px; line-height:1.6; color:#7a7568;">Wähle deine Themen — du erhältst nur, was dich wirklich interessiert.</p>
+  <div class="form-card reveal reveal-d2">
+
+    <!-- Success -->
+    <div class="success-state" id="success">
+      <div class="success-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11l5 5L18 6" stroke="#0f0e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Du bist dabei.</h3>
+      <p>Bestätige deine E-Mail-Adresse.<br>Die erste Ausgabe erscheint am <strong>1. August 2026.</strong></p>
     </div>
 
-    <!-- Form card -->
-    <div style="background:#fff; border-radius:16px; padding:40px; box-shadow:0 4px 0 rgba(0,0,0,.03),0 20px 50px -20px rgba(0,0,0,.18);">
-
-      <!-- SUCCESS -->
-      <div id="success" style="display:none; text-align:center; padding:20px 0;">
-        <div style="width:56px;height:56px;background:#f0e8d5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 13l6 6L21 7" stroke="#b07a3c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h3 style="font:700 24px/1.2 'Playfair Display',Georgia,serif; color:#1a1a18; margin-bottom:10px;">Du bist dabei!</h3>
-        <p style="font-size:15px; line-height:1.6; color:#6b6a64; max-width:380px; margin:0 auto 6px;">Wir haben dir eine Bestätigungs-E-Mail gesendet. Bitte bestätige deine Adresse.</p>
-        <p style="font-size:14px; color:#9a8f78;">Der erste Newsletter erscheint am <strong>1. Juli 2026.</strong></p>
+    <!-- Form -->
+    <div id="signup-form">
+      <label class="form-label">Themen wählen</label>
+      <div class="topic-btns" id="topics">
+        <button type="button" class="btn-topic" data-id="KI">Künstliche Intelligenz</button>
+        <button type="button" class="btn-topic" data-id="TECH">Technologie</button>
+        <button type="button" class="btn-topic" data-id="FINANZEN">Finanzen</button>
       </div>
 
-      <!-- FORM -->
-      <div id="signup-form">
-        <!-- Themen -->
-        <div style="margin-bottom:28px;">
-          <div style="font:600 11px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:#b07a3c; margin-bottom:14px;">Deine Themen wählen</div>
-          <div style="display:flex; flex-wrap:wrap; gap:10px;" id="topics">
-            <button type="button" class="btn-topic" data-id="gemeinderat">Gemeinderat &amp; Politik</button>
-            <button type="button" class="btn-topic" data-id="bau">Bau &amp; Infrastruktur</button>
-            <button type="button" class="btn-topic" data-id="abstimmung">Abstimmungen &amp; Wahlen</button>
-            <button type="button" class="btn-topic" data-id="agenda">Agenda &amp; Veranstaltungen</button>
-            <button type="button" class="btn-topic" data-id="vereine">Vereine &amp; Lokales</button>
-            <button type="button" class="btn-topic" data-id="amtsblatt">Amtliche Bekanntmachungen</button>
-          </div>
-          <div id="topics-hint" style="margin-top:10px;font-size:12px;color:#a89c84;">Wähle mindestens ein Thema aus.</div>
+      <div class="field-group">
+        <div class="field">
+          <label class="form-label">Vorname <span style="color:#d0c8bc;font-weight:300;">(optional)</span></label>
+          <input type="text" id="name" placeholder="Alex">
         </div>
-
-        <!-- Name + Email -->
-        <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;">
-          <div>
-            <label style="display:block;font:600 11px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b6a64;margin-bottom:7px;">Vorname <span style="color:#b0a898;font-weight:400;">(optional)</span></label>
-            <input type="text" id="name" placeholder="z.B. Maria" style="width:100%;padding:12px 16px;border:1.5px solid #e2ddd3;border-radius:8px;font:400 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1a1a18;background:#faf9f6;">
-          </div>
-          <div>
-            <label style="display:block;font:600 11px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b6a64;margin-bottom:7px;">E-Mail-Adresse <span style="color:#b14a32;">*</span></label>
-            <input type="email" id="email" placeholder="deine@email.ch" style="width:100%;padding:12px 16px;border:1.5px solid #e2ddd3;border-radius:8px;font:400 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1a1a18;background:#faf9f6;">
-          </div>
+        <div class="field">
+          <label class="form-label">E-Mail-Adresse <span style="color:#c84b4b;">*</span></label>
+          <input type="email" id="email" placeholder="deine@email.com">
         </div>
-
-        <!-- Error -->
-        <div id="error-box" style="display:none;margin-bottom:16px;padding:10px 14px;background:#fdf0ed;border-radius:6px;border-left:3px solid #b14a32;font-size:13.5px;color:#8a2e1c;"></div>
-
-        <!-- Submit -->
-        <button type="button" id="submit-btn" style="width:100%;padding:16px;background:#b07a3c;border:none;border-radius:100px;font:700 16px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fff;cursor:pointer;letter-spacing:.01em;">Gratis abonnieren →</button>
-
-        <!-- Trust -->
-        <div style="margin-top:16px;text-align:center;font-size:12.5px;color:#a89c84;line-height:1.5;">Kostenlos · Kein Spam · Jederzeit abmeldbar · Daten bleiben in der Schweiz</div>
       </div>
+
+      <div id="error-box"></div>
+
+      <button class="btn-submit" id="submit-btn">Gratis abonnieren</button>
+      <div class="form-trust">Kostenlos · Kein Spam · Jederzeit abmeldbar</div>
     </div>
   </div>
 </section>
 
-<!-- ── WARUM ── -->
-<section style="background:#fff; padding:72px 24px 80px; border-top:1px solid #e8e0cc;">
-  <div style="max-width:600px; margin:0 auto;">
-    <h2 style="font:700 30px/1.2 'Playfair Display',Georgia,serif; color:#1a1a18; text-align:center; margin-bottom:40px; letter-spacing:-0.015em;">Warum Speicher direkt?</h2>
-    <div style="display:flex; flex-direction:column; gap:20px;">
-
-      <div style="display:flex; gap:20px; align-items:flex-start; padding:24px; background:#f7f3ea; border-radius:12px;">
-        <div style="flex-shrink:0;width:42px;height:42px;background:#f0e8d5;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="#b07a3c" stroke-width="1.6"/><path d="M7 9h6M7 12h4" stroke="#b07a3c" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <div style="font:700 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#1a1a18; margin-bottom:6px;">Nur offizielle Quellen</div>
-          <div style="font-size:14px; line-height:1.6; color:#6b6a64;">Amtsblatt AR, Gemeinderat-Protokolle, admin.ch — keine Gerüchte, nur geprüfte Informationen.</div>
-        </div>
-      </div>
-
-      <div style="display:flex; gap:20px; align-items:flex-start; padding:24px; background:#f7f3ea; border-radius:12px;">
-        <div style="flex-shrink:0;width:42px;height:42px;background:#f0e8d5;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#b07a3c" stroke-width="1.6"/><path d="M10 6v4l3 2" stroke="#b07a3c" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <div style="font:700 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#1a1a18; margin-bottom:6px;">Kein Aufwand — einmal abonnieren</div>
-          <div style="font-size:14px; line-height:1.6; color:#6b6a64;">Einmal einrichten, jeden Monat informiert. Kein Suchen auf Websites, kein Verpassen wichtiger Fristen.</div>
-        </div>
-      </div>
-
-      <div style="display:flex; gap:20px; align-items:flex-start; padding:24px; background:#f7f3ea; border-radius:12px;">
-        <div style="flex-shrink:0;width:42px;height:42px;background:#f0e8d5;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#b07a3c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div>
-          <div style="font:700 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#1a1a18; margin-bottom:6px;">Deine Themen, dein Newsletter</div>
-          <div style="font-size:14px; line-height:1.6; color:#6b6a64;">Du entscheidest, was du erhältst. Nur Abstimmungen? Nur Veranstaltungen? Alles möglich.</div>
-        </div>
-      </div>
-
+<!-- ── WHY ── -->
+<section class="why-section">
+  <h2 class="reveal">Warum <em>Signals?</em></h2>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-num">01</div>
+      <div class="why-title">International. Auf Deutsch.</div>
+      <div class="why-text">TechCrunch, OpenAI, HuggingFace — automatisch übersetzt und auf das Wesentliche verdichtet. Keine Sprachbarriere mehr.</div>
+    </div>
+    <div class="why-card reveal reveal-d1">
+      <div class="why-num">02</div>
+      <div class="why-title">Monatlich. Kein Overload.</div>
+      <div class="why-text">Nicht täglich, nicht stündlich. Einmal pro Monat die wirklich relevanten Entwicklungen — lesbar in fünf Minuten.</div>
+    </div>
+    <div class="why-card reveal reveal-d2">
+      <div class="why-num">03</div>
+      <div class="why-title">Deine Themen. Dein Format.</div>
+      <div class="why-text">Nur KI? Nur Finanzen? Alles? Du bestimmst — der Newsletter passt sich an. Jederzeit anpassbar.</div>
     </div>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
-<footer style="background:#1c1a14; padding:36px 24px; text-align:center;">
-  <div style="font:700 16px/1 'Playfair Display',Georgia,serif; color:#f7f3ea; margin-bottom:10px;">Speicher direkt</div>
-  <div style="font-size:12px; color:#6b6458; line-height:1.7;">
-    Ein unabhängiges Bürger-Medienprojekt · Gemeinde Speicher, Appenzell Ausserrhoden<br>
-    <a href="#" style="color:#6b6458;text-decoration:none;">Impressum</a> · <a href="#" style="color:#6b6458;text-decoration:none;">Datenschutz</a>
-  </div>
+<footer>
+  <div class="footer-logo">Signals</div>
+  <p>
+    KI · Tech · Finanzen · Auf Deutsch<br>
+    <a href="#">Impressum</a> · <a href="#">Datenschutz</a>
+  </p>
 </footer>
 
 <script>
-  const selected = new Set();
+  /* ── Scroll animations ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  /* ── Nav scroll effect ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* ── Topic selection ── */
+  const selected = new Set();
   document.querySelectorAll('.btn-topic').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.id;
-      if (selected.has(id)) {
-        selected.delete(id);
-        btn.classList.remove('selected');
-      } else {
-        selected.add(id);
-        btn.classList.add('selected');
-      }
-      const n = selected.size;
-      document.getElementById('topics-hint').textContent =
-        n === 0 ? 'Wähle mindestens ein Thema aus.' :
-        n === 1 ? '1 Thema ausgewählt' : `${n} Themen ausgewählt`;
+      selected.has(id) ? selected.delete(id) : selected.add(id);
+      btn.classList.toggle('selected', selected.has(id));
     });
   });
 
-  document.getElementById('submit-btn').addEventListener('click', () => {
-    const email = document.getElementById('email').value.trim();
-    const name  = document.getElementById('name').value.trim();
+  /* ── Form submit ── */
+  document.getElementById('submit-btn').addEventListener('click', async () => {
+    const email  = document.getElementById('email').value.trim();
+    const name   = document.getElementById('name').value.trim();
     const errBox = document.getElementById('error-box');
 
-    if (!email || !email.includes('@')) {
+    if (!email || !email.includes('@') || !email.includes('.')) {
       errBox.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.';
-      errBox.style.display = 'block';
-      return;
+      errBox.style.display = 'block'; return;
     }
     if (selected.size === 0) {
       errBox.textContent = 'Bitte wähle mindestens ein Thema aus.';
-      errBox.style.display = 'block';
-      return;
+      errBox.style.display = 'block'; return;
     }
     errBox.style.display = 'none';
 
-    // Build Brevo subscription payload
-    const body = {
-      email,
-      attributes: { VORNAME: name },
-      listIds: [/* BREVO_LIST_ID */],
-      updateEnabled: true,
-      // Topic flags
-      ...Object.fromEntries(
-        ['gemeinderat','bau','abstimmung','agenda','vereine','amtsblatt']
-          .map(t => [t.toUpperCase(), selected.has(t)])
-      )
-    };
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Wird gespeichert …'; btn.disabled = true;
 
-    // POST to Brevo API (replace BREVO_LIST_ID and API key via env/server)
-    // For now: show success immediately (wire up server-side action separately)
+    try {
+      await fetch('FLOW_B_WEBHOOK_URL', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email, vorname: name,
+          KI: selected.has('KI'),
+          TECH: selected.has('TECH'),
+          FINANZEN: selected.has('FINANZEN')
+        })
+      });
+    } catch (_) {}
+
     document.getElementById('signup-form').style.display = 'none';
     document.getElementById('success').style.display = 'block';
   });
