@@ -3,20 +3,6 @@
   "flow": [
     {
       "id": 1,
-      "module": "gateway:CustomWebHook",
-      "version": 1,
-      "parameters": {
-        "hook": 0,
-        "maxResults": 1
-      },
-      "mapper": {},
-      "metadata": {
-        "designer": { "x": 0, "y": 0 },
-        "restore": { "hook": { "label": "Täglich 08:00 (Scheduler)" } }
-      }
-    },
-    {
-      "id": 2,
       "module": "rss:listItems",
       "version": 1,
       "parameters": {},
@@ -25,7 +11,21 @@
         "limit": "20"
       },
       "metadata": {
-        "designer": { "x": 300, "y": -100 },
+        "designer": { "x": 0, "y": -150 },
+        "restore": {}
+      }
+    },
+    {
+      "id": 2,
+      "module": "rss:listItems",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "url": "https://www.speicher.ar.ch/rss",
+        "limit": "20"
+      },
+      "metadata": {
+        "designer": { "x": 0, "y": 0 },
         "restore": {}
       }
     },
@@ -35,26 +35,39 @@
       "version": 1,
       "parameters": {},
       "mapper": {
-        "url": "https://www.speicher.ar.ch/rss",
-        "limit": "20"
+        "url": "https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.rss.html",
+        "limit": "10"
       },
       "metadata": {
-        "designer": { "x": 300, "y": 0 },
+        "designer": { "x": 0, "y": 150 },
         "restore": {}
       }
     },
     {
       "id": 4,
-      "module": "rss:listItems",
-      "version": 1,
-      "parameters": {},
+      "module": "google-sheets:addRow",
+      "version": 2,
+      "parameters": {
+        "spreadsheetId": "1u7V1YSnXRq86kOicHeZYFYQKN5diVLLfpPUR17MdW_A",
+        "sheetId": "Staging",
+        "includesHeaders": true
+      },
       "mapper": {
-        "url": "https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.rss.html",
-        "limit": "10"
+        "Datum": "{{formatDate(1.pubDate; \"DD.MM.YYYY\")}}",
+        "Quelle": "Amtsblatt AR",
+        "Titel": "{{1.title}}",
+        "Text": "{{1.description}}",
+        "Link": "{{1.url}}",
+        "Bild-URL": "",
+        "Sektion": "amtsblatt",
+        "Freigabe": "OFFEN"
       },
       "metadata": {
-        "designer": { "x": 300, "y": 100 },
-        "restore": {}
+        "designer": { "x": 300, "y": -150 },
+        "restore": {
+          "spreadsheetId": { "label": "Speicher direkt — Redaktion" },
+          "sheetId": { "label": "Staging" }
+        }
       }
     },
     {
@@ -62,22 +75,22 @@
       "module": "google-sheets:addRow",
       "version": 2,
       "parameters": {
-        "spreadsheetId": "REPLACE_WITH_SHEET_ID",
+        "spreadsheetId": "1u7V1YSnXRq86kOicHeZYFYQKN5diVLLfpPUR17MdW_A",
         "sheetId": "Staging",
         "includesHeaders": true
       },
       "mapper": {
         "Datum": "{{formatDate(2.pubDate; \"DD.MM.YYYY\")}}",
-        "Quelle": "Amtsblatt AR",
+        "Quelle": "Gemeinde Speicher",
         "Titel": "{{2.title}}",
         "Text": "{{2.description}}",
         "Link": "{{2.url}}",
         "Bild-URL": "",
-        "Sektion": "amtsblatt",
+        "Sektion": "gemeinderat",
         "Freigabe": "OFFEN"
       },
       "metadata": {
-        "designer": { "x": 600, "y": -100 },
+        "designer": { "x": 300, "y": 0 },
         "restore": {
           "spreadsheetId": { "label": "Speicher direkt — Redaktion" },
           "sheetId": { "label": "Staging" }
@@ -89,49 +102,22 @@
       "module": "google-sheets:addRow",
       "version": 2,
       "parameters": {
-        "spreadsheetId": "REPLACE_WITH_SHEET_ID",
+        "spreadsheetId": "1u7V1YSnXRq86kOicHeZYFYQKN5diVLLfpPUR17MdW_A",
         "sheetId": "Staging",
         "includesHeaders": true
       },
       "mapper": {
         "Datum": "{{formatDate(3.pubDate; \"DD.MM.YYYY\")}}",
-        "Quelle": "Gemeinde Speicher",
+        "Quelle": "admin.ch",
         "Titel": "{{3.title}}",
         "Text": "{{3.description}}",
         "Link": "{{3.url}}",
-        "Bild-URL": "",
-        "Sektion": "gemeinderat",
-        "Freigabe": "OFFEN"
-      },
-      "metadata": {
-        "designer": { "x": 600, "y": 0 },
-        "restore": {
-          "spreadsheetId": { "label": "Speicher direkt — Redaktion" },
-          "sheetId": { "label": "Staging" }
-        }
-      }
-    },
-    {
-      "id": 7,
-      "module": "google-sheets:addRow",
-      "version": 2,
-      "parameters": {
-        "spreadsheetId": "REPLACE_WITH_SHEET_ID",
-        "sheetId": "Staging",
-        "includesHeaders": true
-      },
-      "mapper": {
-        "Datum": "{{formatDate(4.pubDate; \"DD.MM.YYYY\")}}",
-        "Quelle": "admin.ch",
-        "Titel": "{{4.title}}",
-        "Text": "{{4.description}}",
-        "Link": "{{4.url}}",
         "Bild-URL": "",
         "Sektion": "abstimmung",
         "Freigabe": "OFFEN"
       },
       "metadata": {
-        "designer": { "x": 600, "y": 100 },
+        "designer": { "x": 300, "y": 150 },
         "restore": {
           "spreadsheetId": { "label": "Speicher direkt — Redaktion" },
           "sheetId": { "label": "Staging" }
