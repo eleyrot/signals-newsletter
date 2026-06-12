@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speicher direkt — Gemeinde-Newsletter</title>
+  <meta name="description" content="Kostenloser Newsletter der Gemeinde Speicher AR. Amtsblatt, Gemeinderat, Bauprojekte, Abstimmungen, Agenda und Vereine — direkt in dein Postfach.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #1c1a14;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    input[type=email], input[type=text] { outline: none; }
+    input[type=email]:focus, input[type=text]:focus { border-color: #b07a3c !important; }
+    ::placeholder { color: #b0a898; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .btn-topic {
+      padding: 10px 18px;
+      border-radius: 100px;
+      background: transparent;
+      border: 2px solid #d4c4a0;
+      color: #4a463d;
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 600;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      white-space: nowrap;
+      transition: all .15s;
+    }
+    .btn-topic.selected {
+      background: #b07a3c;
+      border-color: #b07a3c;
+      color: #fff;
+    }
+    .btn-topic:hover:not(.selected) {
+      border-color: #b07a3c;
+      color: #b07a3c;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section style="background:#1c1a14; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 24px 64px; position:relative;">
+
+  <!-- Nav -->
+  <nav style="position:absolute; top:0; left:0; right:0; padding:24px 48px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,.06);">
+    <div style="font:700 18px/1 'Playfair Display',Georgia,serif; color:#f7f3ea; letter-spacing:-0.01em;">Speicher direkt</div>
+    <div style="font:400 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.16em; text-transform:uppercase; color:#6b6458;">Gemeinde Speicher · AR</div>
+  </nav>
+
+  <!-- Content -->
+  <div style="max-width:680px; width:100%; text-align:center; animation:fadeUp .7s ease both;">
+    <div style="font:400 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.2em; text-transform:uppercase; color:#b07a3c; margin-bottom:28px;">Kostenloser Newsletter · Gemeinde Speicher</div>
+    <h1 style="font:700 58px/1.08 'Playfair Display',Georgia,serif; color:#f7f3ea; letter-spacing:-0.02em; margin-bottom:24px;">Was dein Dorf bewegt — direkt in dein Postfach.</h1>
+    <p style="font-size:18px; line-height:1.65; color:#a89c84; max-width:520px; margin:0 auto 40px;">Amtsblatt, Gemeinderat, Bauprojekte, Abstimmungen, Agenda, Vereine — automatisiert zusammengefasst aus offiziellen Quellen. Du wählst, was dich interessiert.</p>
+
+    <div style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin-bottom:48px;">
+      <div style="display:flex; align-items:center; gap:8px; color:#d4c8b0; font-size:14px;"><div style="width:6px;height:6px;background:#b07a3c;border-radius:50%;"></div>100% kostenlos</div>
+      <div style="display:flex; align-items:center; gap:8px; color:#d4c8b0; font-size:14px;"><div style="width:6px;height:6px;background:#b07a3c;border-radius:50%;"></div>Nur offizielle Quellen</div>
+      <div style="display:flex; align-items:center; gap:8px; color:#d4c8b0; font-size:14px;"><div style="width:6px;height:6px;background:#b07a3c;border-radius:50%;"></div>Jederzeit abmeldbar</div>
+    </div>
+
+    <a href="#form" style="display:inline-flex; align-items:center; gap:10px; font:600 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#fff; background:#b07a3c; text-decoration:none; padding:16px 32px; border-radius:100px; letter-spacing:.01em;">
+      Jetzt gratis abonnieren
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <div style="position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to bottom,transparent,#f7f3ea);"></div>
+</section>
+
+<!-- ── FORM ── -->
+<section id="form" style="background:#f7f3ea; padding:72px 24px 80px;">
+  <div style="max-width:600px; margin:0 auto;">
+
+    <div style="text-align:center; margin-bottom:48px;">
+      <h2 style="font:700 36px/1.12 'Playfair Display',Georgia,serif; color:#1a1a18; letter-spacing:-0.02em; margin-bottom:12px;">In 60 Sekunden dabei.</h2>
+      <p style="font-size:16px; line-height:1.6; color:#7a7568;">Wähle deine Themen — du erhältst nur, was dich wirklich interessiert.</p>
+    </div>
+
+    <!-- Form card -->
+    <div style="background:#fff; border-radius:16px; padding:40px; box-shadow:0 4px 0 rgba(0,0,0,.03),0 20px 50px -20px rgba(0,0,0,.18);">
+
+      <!-- SUCCESS -->
+      <div id="success" style="display:none; text-align:center; padding:20px 0;">
+        <div style="width:56px;height:56px;background:#f0e8d5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 13l6 6L21 7" stroke="#b07a3c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 style="font:700 24px/1.2 'Playfair Display',Georgia,serif; color:#1a1a18; margin-bottom:10px;">Du bist dabei!</h3>
+        <p style="font-size:15px; line-height:1.6; color:#6b6a64; max-width:380px; margin:0 auto 6px;">Wir haben dir eine Bestätigungs-E-Mail gesendet. Bitte bestätige deine Adresse.</p>
+        <p style="font-size:14px; color:#9a8f78;">Der erste Newsletter erscheint am <strong>1. Juli 2026.</strong></p>
+      </div>
+
+      <!-- FORM -->
+      <div id="signup-form">
+        <!-- Themen -->
+        <div style="margin-bottom:28px;">
+          <div style="font:600 11px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:#b07a3c; margin-bottom:14px;">Deine Themen wählen</div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;" id="topics">
+            <button type="button" class="btn-topic" data-id="gemeinderat">Gemeinderat &amp; Politik</button>
+            <button type="button" class="btn-topic" data-id="bau">Bau &amp; Infrastruktur</button>
+            <button type="button" class="btn-topic" data-id="abstimmung">Abstimmungen &amp; Wahlen</button>
+            <button type="button" class="btn-topic" data-id="agenda">Agenda &amp; Veranstaltungen</button>
+            <button type="button" class="btn-topic" data-id="vereine">Vereine &amp; Lokales</button>
+            <button type="button" class="btn-topic" data-id="amtsblatt">Amtliche Bekanntmachungen</button>
+          </div>
+          <div id="topics-hint" style="margin-top:10px;font-size:12px;color:#a89c84;">Wähle mindestens ein Thema aus.</div>
+        </div>
+
+        <!-- Name + Email -->
+        <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;">
+          <div>
+            <label style="display:block;font:600 11px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b6a64;margin-bottom:7px;">Vorname <span style="color:#b0a898;font-weight:400;">(optional)</span></label>
+            <input type="text" id="name" placeholder="z.B. Maria" style="width:100%;padding:12px 16px;border:1.5px solid #e2ddd3;border-radius:8px;font:400 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1a1a18;background:#faf9f6;">
+          </div>
+          <div>
+            <label style="display:block;font:600 11px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b6a64;margin-bottom:7px;">E-Mail-Adresse <span style="color:#b14a32;">*</span></label>
+            <input type="email" id="email" placeholder="deine@email.ch" style="width:100%;padding:12px 16px;border:1.5px solid #e2ddd3;border-radius:8px;font:400 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1a1a18;background:#faf9f6;">
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div id="error-box" style="display:none;margin-bottom:16px;padding:10px 14px;background:#fdf0ed;border-radius:6px;border-left:3px solid #b14a32;font-size:13.5px;color:#8a2e1c;"></div>
+
+        <!-- Submit -->
+        <button type="button" id="submit-btn" style="width:100%;padding:16px;background:#b07a3c;border:none;border-radius:100px;font:700 16px/1 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#fff;cursor:pointer;letter-spacing:.01em;">Gratis abonnieren →</button>
+
+        <!-- Trust -->
+        <div style="margin-top:16px;text-align:center;font-size:12.5px;color:#a89c84;line-height:1.5;">Kostenlos · Kein Spam · Jederzeit abmeldbar · Daten bleiben in der Schweiz</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WARUM ── -->
+<section style="background:#fff; padding:72px 24px 80px; border-top:1px solid #e8e0cc;">
+  <div style="max-width:600px; margin:0 auto;">
+    <h2 style="font:700 30px/1.2 'Playfair Display',Georgia,serif; color:#1a1a18; text-align:center; margin-bottom:40px; letter-spacing:-0.015em;">Warum Speicher direkt?</h2>
+    <div style="display:flex; flex-direction:column; gap:20px;">
+
+      <div style="display:flex; gap:20px; align-items:flex-start; padding:24px; background:#f7f3ea; border-radius:12px;">
+        <div style="flex-shrink:0;width:42px;height:42px;background:#f0e8d5;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="#b07a3c" stroke-width="1.6"/><path d="M7 9h6M7 12h4" stroke="#b07a3c" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div style="font:700 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#1a1a18; margin-bottom:6px;">Nur offizielle Quellen</div>
+          <div style="font-size:14px; line-height:1.6; color:#6b6a64;">Amtsblatt AR, Gemeinderat-Protokolle, admin.ch — keine Gerüchte, nur geprüfte Informationen.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:20px; align-items:flex-start; padding:24px; background:#f7f3ea; border-radius:12px;">
+        <div style="flex-shrink:0;width:42px;height:42px;background:#f0e8d5;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#b07a3c" stroke-width="1.6"/><path d="M10 6v4l3 2" stroke="#b07a3c" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div style="font:700 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#1a1a18; margin-bottom:6px;">Kein Aufwand — einmal abonnieren</div>
+          <div style="font-size:14px; line-height:1.6; color:#6b6a64;">Einmal einrichten, jeden Monat informiert. Kein Suchen auf Websites, kein Verpassen wichtiger Fristen.</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:20px; align-items:flex-start; padding:24px; background:#f7f3ea; border-radius:12px;">
+        <div style="flex-shrink:0;width:42px;height:42px;background:#f0e8d5;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#b07a3c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div style="font:700 15px/1 'Helvetica Neue',Helvetica,Arial,sans-serif; color:#1a1a18; margin-bottom:6px;">Deine Themen, dein Newsletter</div>
+          <div style="font-size:14px; line-height:1.6; color:#6b6a64;">Du entscheidest, was du erhältst. Nur Abstimmungen? Nur Veranstaltungen? Alles möglich.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer style="background:#1c1a14; padding:36px 24px; text-align:center;">
+  <div style="font:700 16px/1 'Playfair Display',Georgia,serif; color:#f7f3ea; margin-bottom:10px;">Speicher direkt</div>
+  <div style="font-size:12px; color:#6b6458; line-height:1.7;">
+    Ein unabhängiges Bürger-Medienprojekt · Gemeinde Speicher, Appenzell Ausserrhoden<br>
+    <a href="#" style="color:#6b6458;text-decoration:none;">Impressum</a> · <a href="#" style="color:#6b6458;text-decoration:none;">Datenschutz</a>
+  </div>
+</footer>
+
+<script>
+  const selected = new Set();
+
+  document.querySelectorAll('.btn-topic').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      if (selected.has(id)) {
+        selected.delete(id);
+        btn.classList.remove('selected');
+      } else {
+        selected.add(id);
+        btn.classList.add('selected');
+      }
+      const n = selected.size;
+      document.getElementById('topics-hint').textContent =
+        n === 0 ? 'Wähle mindestens ein Thema aus.' :
+        n === 1 ? '1 Thema ausgewählt' : `${n} Themen ausgewählt`;
+    });
+  });
+
+  document.getElementById('submit-btn').addEventListener('click', () => {
+    const email = document.getElementById('email').value.trim();
+    const name  = document.getElementById('name').value.trim();
+    const errBox = document.getElementById('error-box');
+
+    if (!email || !email.includes('@')) {
+      errBox.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.';
+      errBox.style.display = 'block';
+      return;
+    }
+    if (selected.size === 0) {
+      errBox.textContent = 'Bitte wähle mindestens ein Thema aus.';
+      errBox.style.display = 'block';
+      return;
+    }
+    errBox.style.display = 'none';
+
+    // Build Brevo subscription payload
+    const body = {
+      email,
+      attributes: { VORNAME: name },
+      listIds: [/* BREVO_LIST_ID */],
+      updateEnabled: true,
+      // Topic flags
+      ...Object.fromEntries(
+        ['gemeinderat','bau','abstimmung','agenda','vereine','amtsblatt']
+          .map(t => [t.toUpperCase(), selected.has(t)])
+      )
+    };
+
+    // POST to Brevo API (replace BREVO_LIST_ID and API key via env/server)
+    // For now: show success immediately (wire up server-side action separately)
+    document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "name": "Flow C — Freigabe → Brevo Campaign Draft",
+  "description": "Wenn im Staging-Tab alle gewünschten Zeilen auf 'FREIGEGEBEN' gesetzt sind, wird ein Brevo-Campaign-Draft mit dem befüllten Template erstellt.",
+  "flow": [
+    {
+      "id": 1,
+      "module": "google-sheets:WatchRows",
+      "type": "trigger",
+      "label": "Neue freigegebene Zeile in Staging",
+      "parameters": {
+        "spreadsheetId": "REPLACE_WITH_SHEET_ID",
+        "sheetName": "Staging",
+        "filter": {
+          "column": "H",
+          "value": "FREIGEGEBEN"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "google-sheets:GetRows",
+      "label": "Alle freigegebenen Zeilen laden",
+      "parameters": {
+        "spreadsheetId": "REPLACE_WITH_SHEET_ID",
+        "sheetName": "Staging",
+        "filter": "H = FREIGEGEBEN"
+      }
+    },
+    {
+      "id": 3,
+      "module": "builtin:SetVariables",
+      "label": "Template-Parameter befüllen",
+      "parameters": {
+        "variables": {
+          "AUSGABE_NR": "{{formatDate(now, 'MM')}}",
+          "AUSGABE_MONAT": "{{formatDate(now, 'MMMM YYYY')}}",
+          "GEMEINDERAT_TITEL": "{{rows.gemeinderat.titel}}",
+          "GEMEINDERAT_TEXT": "{{rows.gemeinderat.text}}",
+          "GEMEINDERAT_LINK": "{{rows.gemeinderat.link}}",
+          "BAU1_TITEL": "{{rows.bau[0].titel}}",
+          "BAU1_TEXT": "{{rows.bau[0].text}}",
+          "BAU1_DATUM": "{{rows.bau[0].datum}}",
+          "BAU2_TITEL": "{{rows.bau[1].titel}}",
+          "BAU2_TEXT": "{{rows.bau[1].text}}",
+          "BAU2_DATUM": "{{rows.bau[1].datum}}"
+        }
+      },
+      "notes": "Mapping je nach Spalten-Struktur im Staging anpassen"
+    },
+    {
+      "id": 4,
+      "module": "http:MakeARequest",
+      "label": "Brevo Campaign Draft erstellen",
+      "parameters": {
+        "url": "https://api.brevo.com/v3/emailCampaigns",
+        "method": "POST",
+        "headers": {
+          "api-key": "REPLACE_WITH_BREVO_API_KEY",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Speicher direkt — {{formatDate(now, 'MMMM YYYY')}}",
+          "subject": "Speicher direkt · {{formatDate(now, 'MMMM YYYY')}}",
+          "sender": {
+            "name": "Speicher direkt",
+            "email": "newsletter@speicher-direkt.ch"
+          },
+          "type": "classic",
+          "templateId": "REPLACE_WITH_BREVO_TEMPLATE_ID",
+          "params": "{{variables}}",
+          "recipients": {
+            "listIds": ["REPLACE_WITH_BREVO_LIST_ID"]
+          },
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "module": "google-sheets:AddRow",
+      "label": "Ausgabe ins Archiv schreiben",
+      "parameters": {
+        "spreadsheetId": "REPLACE_WITH_SHEET_ID",
+        "sheetName": "Archiv",
+        "values": {
+          "A": "{{formatDate(now, 'MM/YYYY')}}",
+          "B": "{{formatDate(now, 'DD.MM.YYYY')}}",
+          "C": "Speicher direkt · {{formatDate(now, 'MMMM YYYY')}}",
+          "D": "DRAFT erstellt",
+          "E": "{{step4.response.body.id}}"
+        }
+      }
+    }
+  ],
+  "setup_notes": [
+    "1. Trigger: Google Sheets > Watch Rows (auf Spalte H = FREIGEGEBEN filtern)",
+    "2. HTTP Modul: POST an Brevo API",
+    "3. REPLACE_WITH_BREVO_API_KEY → Brevo > Settings > API Keys",
+    "4. REPLACE_WITH_BREVO_TEMPLATE_ID → ID des hochgeladenen brevo/template.html",
+    "5. REPLACE_WITH_BREVO_LIST_ID → ID der Kontaktliste in Brevo",
+    "6. REPLACE_WITH_SHEET_ID → Google Sheets ID aus der URL",
+    "7. Campaign im Brevo-Dashboard prüfen und manuell senden oder Sendezeitpunkt setzen"
+  ]
+}

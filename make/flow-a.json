@@ -1,0 +1,79 @@
+{
+  "name": "Flow A — Quellen → Google Sheets Staging",
+  "description": "Täglich 08:00: RSS-Feeds von ar.ch und speicher.ar.ch abrufen und neue Einträge ins Staging-Tab schreiben.",
+  "flow": [
+    {
+      "id": 1,
+      "module": "builtin:BasicTrigger",
+      "type": "trigger",
+      "label": "Täglich 08:00 Uhr",
+      "parameters": {
+        "interval": "DAY",
+        "time": "08:00"
+      }
+    },
+    {
+      "id": 2,
+      "module": "rss:ListRSSFeedItems",
+      "label": "RSS Amtsblatt AR",
+      "parameters": {
+        "url": "https://www.amtsblatt.ar.ch/rss",
+        "limit": 20
+      }
+    },
+    {
+      "id": 3,
+      "module": "rss:ListRSSFeedItems",
+      "label": "RSS Gemeinde Speicher",
+      "parameters": {
+        "url": "https://www.speicher.ar.ch/rss",
+        "limit": 20
+      }
+    },
+    {
+      "id": 4,
+      "module": "rss:ListRSSFeedItems",
+      "label": "RSS Eidg. Abstimmungen",
+      "parameters": {
+        "url": "https://www.admin.ch/gov/de/start/dokumentation/medienmitteilungen.rss.html",
+        "limit": 10
+      }
+    },
+    {
+      "id": 5,
+      "module": "builtin:ArrayAggregator",
+      "label": "Alle Einträge zusammenführen",
+      "parameters": {
+        "sourceModules": [2, 3, 4]
+      }
+    },
+    {
+      "id": 6,
+      "module": "google-sheets:AddRow",
+      "label": "In Staging schreiben",
+      "parameters": {
+        "spreadsheetId": "REPLACE_WITH_SHEET_ID",
+        "sheetName": "Staging",
+        "values": {
+          "A": "{{item.pubDate}}",
+          "B": "{{item.source}}",
+          "C": "{{item.title}}",
+          "D": "{{item.description}}",
+          "E": "{{item.link}}",
+          "F": "",
+          "G": "OFFEN",
+          "H": "auto"
+        }
+      },
+      "notes": "Spalten: A=Datum, B=Quelle, C=Titel, D=Text, E=Link, F=Bild-URL, G=Status, H=Freigabe"
+    }
+  ],
+  "setup_notes": [
+    "1. Neues Scenario in Make.com erstellen",
+    "2. 'Schedule' Trigger auf täglich 08:00 setzen",
+    "3. Drei RSS-Module hinzufügen (Modul: RSS > Get RSS feed items)",
+    "4. Array Aggregator: alle drei Feeds zusammenführen",
+    "5. Google Sheets 'Add a Row' Modul: REPLACE_WITH_SHEET_ID durch echte Sheet-ID ersetzen",
+    "6. Spalten-Mapping gemäss 'values' oben konfigurieren"
+  ]
+}

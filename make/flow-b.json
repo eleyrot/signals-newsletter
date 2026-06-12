@@ -1,0 +1,61 @@
+{
+  "name": "Flow B — Tally Webhook → Sheets Vereins-Einträge",
+  "description": "Wenn ein Verein ein Formular auf Tally.so einreicht, wird der Eintrag ins Agenda-Tab von Google Sheets geschrieben.",
+  "flow": [
+    {
+      "id": 1,
+      "module": "webhook:CustomWebhook",
+      "type": "trigger",
+      "label": "Tally Webhook empfangen",
+      "parameters": {
+        "webhookName": "Tally Vereins-Einreichung",
+        "method": "POST",
+        "contentType": "application/json"
+      },
+      "notes": "Diese Webhook-URL in Tally.so unter Formular > Integrations > Webhooks eintragen"
+    },
+    {
+      "id": 2,
+      "module": "builtin:SetVariables",
+      "label": "Felder auslesen",
+      "parameters": {
+        "variables": {
+          "vereinsname": "{{body.data.fields[0].value}}",
+          "kontakt_email": "{{body.data.fields[1].value}}",
+          "titel": "{{body.data.fields[2].value}}",
+          "beschreibung": "{{body.data.fields[3].value}}",
+          "datum": "{{body.data.fields[4].value}}",
+          "ort": "{{body.data.fields[5].value}}"
+        }
+      },
+      "notes": "Feldnummern anpassen je nach Tally-Formular-Struktur"
+    },
+    {
+      "id": 3,
+      "module": "google-sheets:AddRow",
+      "label": "In Agenda-Tab schreiben",
+      "parameters": {
+        "spreadsheetId": "REPLACE_WITH_SHEET_ID",
+        "sheetName": "Agenda",
+        "values": {
+          "A": "{{now}}",
+          "B": "{{variables.vereinsname}}",
+          "C": "{{variables.titel}}",
+          "D": "{{variables.beschreibung}}",
+          "E": "{{variables.datum}}",
+          "F": "{{variables.ort}}",
+          "G": "{{variables.kontakt_email}}",
+          "H": "AUSSTEHEND"
+        }
+      },
+      "notes": "Spalten: A=Eingangsdatum, B=Verein, C=Titel, D=Beschreibung, E=Datum, F=Ort, G=Kontakt, H=Freigabe"
+    }
+  ],
+  "setup_notes": [
+    "1. Neues Scenario: Trigger = Webhooks > Custom webhook",
+    "2. Webhook-URL kopieren und in Tally.so Formular eintragen",
+    "3. Tally-Formular einmalig absenden → Make empfängt Testdaten",
+    "4. Datenstruktur bestimmen → Felder korrekt mappen",
+    "5. Google Sheets Add Row konfigurieren (Sheet-ID ersetzen)"
+  ]
+}

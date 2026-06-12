@@ -1,0 +1,89 @@
+{
+  "name": "Flow D — Abo-Formular → Brevo Kontakt + DOI-Mail",
+  "description": "Wenn jemand das Abo-Formular auf der Landing Page abschickt, wird der Kontakt in Brevo angelegt und die Double-Opt-In-Mail ausgelöst.",
+  "flow": [
+    {
+      "id": 1,
+      "module": "webhook:CustomWebhook",
+      "type": "trigger",
+      "label": "Formular-Submission empfangen",
+      "parameters": {
+        "webhookName": "Speicher direkt Abo",
+        "method": "POST",
+        "contentType": "application/json"
+      },
+      "notes": "Diese URL in index.html als fetch()-Endpoint einsetzen (ersetze den Platzhalter im submit-Handler)"
+    },
+    {
+      "id": 2,
+      "module": "builtin:SetVariables",
+      "label": "Felder extrahieren",
+      "parameters": {
+        "variables": {
+          "email": "{{body.email}}",
+          "vorname": "{{body.name}}",
+          "gemeinderat": "{{body.gemeinderat}}",
+          "bau": "{{body.bau}}",
+          "abstimmung": "{{body.abstimmung}}",
+          "agenda": "{{body.agenda}}",
+          "vereine": "{{body.vereine}}",
+          "amtsblatt": "{{body.amtsblatt}}"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "http:MakeARequest",
+      "label": "Kontakt in Brevo anlegen / aktualisieren",
+      "parameters": {
+        "url": "https://api.brevo.com/v3/contacts",
+        "method": "POST",
+        "headers": {
+          "api-key": "REPLACE_WITH_BREVO_API_KEY",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "email": "{{variables.email}}",
+          "attributes": {
+            "VORNAME": "{{variables.vorname}}",
+            "GEMEINDERAT": "{{variables.gemeinderat}}",
+            "BAU": "{{variables.bau}}",
+            "ABSTIMMUNG": "{{variables.abstimmung}}",
+            "AGENDA": "{{variables.agenda}}",
+            "VEREINE": "{{variables.vereine}}",
+            "AMTSBLATT": "{{variables.amtsblatt}}"
+          },
+          "listIds": ["REPLACE_WITH_BREVO_LIST_ID"],
+          "updateEnabled": true
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "http:MakeARequest",
+      "label": "Double Opt-In E-Mail senden",
+      "parameters": {
+        "url": "https://api.brevo.com/v3/contacts/doubleOptinConfirmation",
+        "method": "POST",
+        "headers": {
+          "api-key": "REPLACE_WITH_BREVO_API_KEY",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "email": "{{variables.email}}",
+          "includeListIds": ["REPLACE_WITH_BREVO_LIST_ID"],
+          "templateId": "REPLACE_WITH_DOI_TEMPLATE_ID",
+          "redirectionUrl": "https://DEINE-GITHUB-PAGES-URL/?confirmed=1"
+        }
+      }
+    }
+  ],
+  "setup_notes": [
+    "1. Webhook-URL aus Make kopieren",
+    "2. In index.html: submit-Handler fetch() auf diese URL zeigen lassen",
+    "3. REPLACE_WITH_BREVO_API_KEY → Brevo > Settings > API Keys",
+    "4. REPLACE_WITH_BREVO_LIST_ID → ID der Kontaktliste",
+    "5. REPLACE_WITH_DOI_TEMPLATE_ID → Brevo DOI-Template-ID (Brevo erstellt automatisch ein Standard-DOI-Template)",
+    "6. redirectionUrl → echte GitHub Pages URL eintragen (z.B. https://USERNAME.github.io/speicher-direkt/?confirmed=1)"
+  ]
+}
