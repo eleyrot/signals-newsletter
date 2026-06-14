@@ -15,174 +15,287 @@
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ece9e2;">
 <tr><td align="center" style="padding:28px 16px 0;">
-
 <table class="wrapper" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;">
 
-  <!-- ══ TOP GOLD LINE ══ -->
+  <!-- TOP GOLD LINE -->
   <tr><td style="height:3px;background-color:#c9a55a;font-size:0;line-height:0;">&nbsp;</td></tr>
 
-  <!-- ══ MASTHEAD ══ -->
+  <!-- MASTHEAD -->
   <tr>
     <td style="background-color:#07080d;padding:32px 44px 18px;" class="pad">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td>
-            <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:36px;font-style:italic;font-weight:normal;color:#e4e0d8;letter-spacing:-.01em;line-height:1;">Signals</p>
+          <td valign="middle">
+            <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:38px;font-style:italic;font-weight:normal;color:#e4e0d8;letter-spacing:-.01em;line-height:1;">Signals</p>
           </td>
           <td align="right" valign="middle">
-            <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#3a3830;letter-spacing:.14em;text-transform:uppercase;line-height:1.6;">Ausgabe {{ params.AUSGABE_NR }}<br>{{ params.MONAT }}</p>
+            <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#c9bfb0;letter-spacing:.14em;text-transform:uppercase;line-height:1.8;">Ausgabe {{ params.AUSGABE_NR }}<br>{{ params.MONAT }}</p>
           </td>
         </tr>
       </table>
     </td>
   </tr>
   <tr><td style="background-color:#07080d;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#1e1e28;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+
+  <!-- GREETING -->
   <tr>
-    <td style="background-color:#07080d;padding:16px 44px 32px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#3a3830;letter-spacing:.16em;text-transform:uppercase;">KI · Tech · Finanzen · Auf Deutsch</p>
-      {% if params.VORNAME %}
-      <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:15px;font-style:italic;color:#5a5648;">Guten Monat, {{ params.VORNAME }}.</p>
-      {% else %}
-      <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:15px;font-style:italic;color:#5a5648;">Guten Monat.</p>
-      {% endif %}
+    <td style="background-color:#07080d;padding:18px 44px 32px;" class="pad">
+      <p style="margin:0 0 4px 0;font-family:Georgia,'Times New Roman',serif;font-size:10px;font-style:italic;color:#c9bfb0;letter-spacing:.16em;">KI · Tech · Finanzen · Auf Deutsch</p>
+      <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:15px;font-style:italic;color:#c9bfb0;">Guten Morgen, {{ contact.VORNAME }}.</p>
     </td>
   </tr>
 
-  <!-- ══ INTRO ══ -->
+  <!-- INTRO -->
   <tr>
-    <td style="background-color:#0d0e15;padding:28px 44px;border-top:1px solid #1e1e28;" class="pad">
-      <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:16px;font-style:italic;color:#7a7468;line-height:1.75;">{{ params.INTRO_TEXT }}</p>
+    <td style="background-color:#0d0e15;padding:28px 44px;border-top:1px solid #1e1e28;border-bottom:1px solid #1e1e28;" class="pad">
+      <p style="margin:0 0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:16px;font-style:italic;color:#b0a898;line-height:1.75;border-left:2px solid #c9a55a;padding-left:16px;">{{ params.INTRO_TEXT }}</p>
     </td>
   </tr>
-  <tr><td style="background-color:#0d0e15;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#1e1e28;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
 
   <!-- ══ KI SECTION ══ -->
   {% if contact.KI %}
   <!-- KI Header -->
   <tr>
-    <td style="background-color:#faf9f5;padding:32px 44px 20px;border-top:3px solid #ece9e2;" class="pad">
-      <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;color:#c9a55a;letter-spacing:.2em;text-transform:uppercase;">◈&nbsp;&nbsp;Künstliche Intelligenz</p>
+    <td style="background-color:#faf9f5;padding:36px 44px 0;border-top:4px solid #c9a55a;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td valign="middle">
+            <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;color:#c9a55a;letter-spacing:.28em;text-transform:uppercase;">◈&nbsp;&nbsp;Künstliche Intelligenz</p>
+          </td>
+          <td align="right" valign="middle">
+            <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:11px;font-style:italic;color:#c8c0b4;">3 Artikel</p>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;"><tr><td style="height:1px;background-color:#e0dbd2;font-size:0;line-height:0;">&nbsp;</td></tr></table>
     </td>
   </tr>
-  <tr><td style="background-color:#faf9f5;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#e8e4da;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
   <!-- KI Article 1 -->
   <tr>
-    <td style="background-color:#faf9f5;padding:26px 44px 22px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.KI_1_QUELLE }}</p>
-      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.KI_1_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.KI_1_TITEL }}</a></p>
-      <p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.75;">{{ params.KI_1_TEXT }}</p>
-      <a href="{{ params.KI_1_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+    <td style="background-color:#faf9f5;padding:24px 44px 20px;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="36" valign="top" style="padding-right:16px;">
+            <p style="margin:4px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-style:italic;font-weight:normal;color:#ddd5c4;line-height:1;">01</p>
+          </td>
+          <td valign="top">
+            <p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.KI_1_QUELLE }}</p>
+            <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:19px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.KI_1_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.KI_1_TITEL }}</a></p>
+            <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.8;">{{ params.KI_1_TEXT }}</p>
+            <a href="{{ params.KI_1_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
-  <tr><td style="background-color:#faf9f5;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#e8e4da;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="background-color:#faf9f5;padding:0 44px 0 96px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#ede9e0;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
   <!-- KI Article 2 -->
   <tr>
-    <td style="background-color:#faf9f5;padding:22px 44px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.KI_2_QUELLE }}</p>
-      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.KI_2_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.KI_2_TITEL }}</a></p>
-      <p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.75;">{{ params.KI_2_TEXT }}</p>
-      <a href="{{ params.KI_2_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+    <td style="background-color:#faf9f5;padding:20px 44px;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="36" valign="top" style="padding-right:16px;">
+            <p style="margin:4px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-style:italic;font-weight:normal;color:#ddd5c4;line-height:1;">02</p>
+          </td>
+          <td valign="top">
+            <p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.KI_2_QUELLE }}</p>
+            <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.KI_2_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.KI_2_TITEL }}</a></p>
+            <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.8;">{{ params.KI_2_TEXT }}</p>
+            <a href="{{ params.KI_2_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
-  <tr><td style="background-color:#faf9f5;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#e8e4da;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="background-color:#faf9f5;padding:0 44px 0 96px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#ede9e0;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
   <!-- KI Article 3 -->
   <tr>
-    <td style="background-color:#faf9f5;padding:22px 44px 32px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.KI_3_QUELLE }}</p>
-      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.KI_3_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.KI_3_TITEL }}</a></p>
-      <p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.75;">{{ params.KI_3_TEXT }}</p>
-      <a href="{{ params.KI_3_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+    <td style="background-color:#faf9f5;padding:20px 44px 32px;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="36" valign="top" style="padding-right:16px;">
+            <p style="margin:4px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-style:italic;font-weight:normal;color:#ddd5c4;line-height:1;">03</p>
+          </td>
+          <td valign="top">
+            <p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.KI_3_QUELLE }}</p>
+            <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.KI_3_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.KI_3_TITEL }}</a></p>
+            <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.8;">{{ params.KI_3_TEXT }}</p>
+            <a href="{{ params.KI_3_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
   {% endif %}
 
   <!-- ══ TECH SECTION ══ -->
   {% if contact.TECH %}
+  <!-- TECH Header -->
   <tr>
-    <td style="background-color:#f5f4f0;padding:32px 44px 20px;border-top:3px solid #ece9e2;" class="pad">
-      <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;color:#c9a55a;letter-spacing:.2em;text-transform:uppercase;">◇&nbsp;&nbsp;Technologie</p>
+    <td style="background-color:#f5f4f0;padding:36px 44px 0;border-top:4px solid #c9a55a;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td valign="middle">
+            <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;color:#c9a55a;letter-spacing:.28em;text-transform:uppercase;">◇&nbsp;&nbsp;Technologie</p>
+          </td>
+          <td align="right" valign="middle">
+            <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:11px;font-style:italic;color:#c8c0b4;">3 Artikel</p>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;"><tr><td style="height:1px;background-color:#e0dbd2;font-size:0;line-height:0;">&nbsp;</td></tr></table>
     </td>
   </tr>
-  <tr><td style="background-color:#f5f4f0;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#e8e4da;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <!-- TECH Article 1 -->
   <tr>
-    <td style="background-color:#f5f4f0;padding:26px 44px 22px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.TECH_1_QUELLE }}</p>
-      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.TECH_1_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.TECH_1_TITEL }}</a></p>
-      <p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.75;">{{ params.TECH_1_TEXT }}</p>
-      <a href="{{ params.TECH_1_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+    <td style="background-color:#f5f4f0;padding:24px 44px 20px;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="36" valign="top" style="padding-right:16px;">
+            <p style="margin:4px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-style:italic;font-weight:normal;color:#ddd5c4;line-height:1;">01</p>
+          </td>
+          <td valign="top">
+            <p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.TECH_1_QUELLE }}</p>
+            <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:19px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.TECH_1_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.TECH_1_TITEL }}</a></p>
+            <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.8;">{{ params.TECH_1_TEXT }}</p>
+            <a href="{{ params.TECH_1_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
-  <tr><td style="background-color:#f5f4f0;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#e8e4da;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="background-color:#f5f4f0;padding:0 44px 0 96px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#ede9e0;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <!-- TECH Article 2 -->
   <tr>
-    <td style="background-color:#f5f4f0;padding:22px 44px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.TECH_2_QUELLE }}</p>
-      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.TECH_2_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.TECH_2_TITEL }}</a></p>
-      <p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.75;">{{ params.TECH_2_TEXT }}</p>
-      <a href="{{ params.TECH_2_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+    <td style="background-color:#f5f4f0;padding:20px 44px;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="36" valign="top" style="padding-right:16px;">
+            <p style="margin:4px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-style:italic;font-weight:normal;color:#ddd5c4;line-height:1;">02</p>
+          </td>
+          <td valign="top">
+            <p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.TECH_2_QUELLE }}</p>
+            <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.TECH_2_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.TECH_2_TITEL }}</a></p>
+            <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.8;">{{ params.TECH_2_TEXT }}</p>
+            <a href="{{ params.TECH_2_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
-  <tr><td style="background-color:#f5f4f0;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#e8e4da;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="background-color:#f5f4f0;padding:0 44px 0 96px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#ede9e0;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <!-- TECH Article 3 -->
   <tr>
-    <td style="background-color:#f5f4f0;padding:22px 44px 32px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.TECH_3_QUELLE }}</p>
-      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.TECH_3_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.TECH_3_TITEL }}</a></p>
-      <p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.75;">{{ params.TECH_3_TEXT }}</p>
-      <a href="{{ params.TECH_3_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+    <td style="background-color:#f5f4f0;padding:20px 44px 32px;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="36" valign="top" style="padding-right:16px;">
+            <p style="margin:4px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-style:italic;font-weight:normal;color:#ddd5c4;line-height:1;">03</p>
+          </td>
+          <td valign="top">
+            <p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.TECH_3_QUELLE }}</p>
+            <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.TECH_3_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.TECH_3_TITEL }}</a></p>
+            <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.8;">{{ params.TECH_3_TEXT }}</p>
+            <a href="{{ params.TECH_3_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
   {% endif %}
 
   <!-- ══ FINANZEN SECTION ══ -->
   {% if contact.FINANZEN %}
+  <!-- FIN Header -->
   <tr>
-    <td style="background-color:#faf9f5;padding:32px 44px 20px;border-top:3px solid #ece9e2;" class="pad">
-      <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;color:#c9a55a;letter-spacing:.2em;text-transform:uppercase;">◉&nbsp;&nbsp;Finanzen</p>
+    <td style="background-color:#faf9f5;padding:36px 44px 0;border-top:4px solid #c9a55a;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td valign="middle">
+            <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;color:#c9a55a;letter-spacing:.28em;text-transform:uppercase;">◉&nbsp;&nbsp;Finanzen</p>
+          </td>
+          <td align="right" valign="middle">
+            <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:11px;font-style:italic;color:#c8c0b4;">3 Artikel</p>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;"><tr><td style="height:1px;background-color:#e0dbd2;font-size:0;line-height:0;">&nbsp;</td></tr></table>
     </td>
   </tr>
-  <tr><td style="background-color:#faf9f5;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#e8e4da;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <!-- FIN Article 1 -->
   <tr>
-    <td style="background-color:#faf9f5;padding:26px 44px 22px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.FIN_1_QUELLE }}</p>
-      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.FIN_1_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.FIN_1_TITEL }}</a></p>
-      <p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.75;">{{ params.FIN_1_TEXT }}</p>
-      <a href="{{ params.FIN_1_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+    <td style="background-color:#faf9f5;padding:24px 44px 20px;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="36" valign="top" style="padding-right:16px;">
+            <p style="margin:4px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-style:italic;font-weight:normal;color:#ddd5c4;line-height:1;">01</p>
+          </td>
+          <td valign="top">
+            <p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.FIN_1_QUELLE }}</p>
+            <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:19px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.FIN_1_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.FIN_1_TITEL }}</a></p>
+            <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.8;">{{ params.FIN_1_TEXT }}</p>
+            <a href="{{ params.FIN_1_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
-  <tr><td style="background-color:#faf9f5;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#e8e4da;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="background-color:#faf9f5;padding:0 44px 0 96px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#ede9e0;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <!-- FIN Article 2 -->
   <tr>
-    <td style="background-color:#faf9f5;padding:22px 44px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.FIN_2_QUELLE }}</p>
-      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.FIN_2_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.FIN_2_TITEL }}</a></p>
-      <p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.75;">{{ params.FIN_2_TEXT }}</p>
-      <a href="{{ params.FIN_2_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+    <td style="background-color:#faf9f5;padding:20px 44px;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="36" valign="top" style="padding-right:16px;">
+            <p style="margin:4px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-style:italic;font-weight:normal;color:#ddd5c4;line-height:1;">02</p>
+          </td>
+          <td valign="top">
+            <p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.FIN_2_QUELLE }}</p>
+            <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.FIN_2_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.FIN_2_TITEL }}</a></p>
+            <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.8;">{{ params.FIN_2_TEXT }}</p>
+            <a href="{{ params.FIN_2_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
-  <tr><td style="background-color:#faf9f5;padding:0 44px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#e8e4da;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <tr><td style="background-color:#faf9f5;padding:0 44px 0 96px;" class="pad"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="height:1px;background-color:#ede9e0;font-size:0;line-height:0;">&nbsp;</td></tr></table></td></tr>
+  <!-- FIN Article 3 -->
   <tr>
-    <td style="background-color:#faf9f5;padding:22px 44px 32px;" class="pad">
-      <p style="margin:0 0 5px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.FIN_3_QUELLE }}</p>
-      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.FIN_3_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.FIN_3_TITEL }}</a></p>
-      <p style="margin:0 0 14px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.75;">{{ params.FIN_3_TEXT }}</p>
-      <a href="{{ params.FIN_3_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+    <td style="background-color:#faf9f5;padding:20px 44px 32px;" class="pad">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="36" valign="top" style="padding-right:16px;">
+            <p style="margin:4px 0 0 0;font-family:Georgia,'Times New Roman',serif;font-size:22px;font-style:italic;font-weight:normal;color:#ddd5c4;line-height:1;">03</p>
+          </td>
+          <td valign="top">
+            <p style="margin:0 0 4px 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#b0a898;letter-spacing:.1em;text-transform:uppercase;">{{ params.FIN_3_QUELLE }}</p>
+            <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:normal;color:#0f0e0b;line-height:1.3;"><a href="{{ params.FIN_3_LINK }}" style="color:#0f0e0b;text-decoration:none;">{{ params.FIN_3_TITEL }}</a></p>
+            <p style="margin:0 0 12px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b6858;line-height:1.8;">{{ params.FIN_3_TEXT }}</p>
+            <a href="{{ params.FIN_3_LINK }}" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#c9a55a;letter-spacing:.06em;text-decoration:none;">Weiterlesen →</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
   {% endif %}
 
-  <!-- ══ FOOTER ══ -->
+  <!-- BOTTOM GOLD LINE -->
   <tr><td style="height:3px;background-color:#c9a55a;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+  <!-- FOOTER -->
   <tr>
     <td style="background-color:#07080d;padding:28px 44px 32px;" class="pad">
-      <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;font-style:italic;color:#3a3830;">Signals</p>
-      <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#252420;letter-spacing:.06em;line-height:2.2;">
+      <p style="margin:0 0 8px 0;font-family:Georgia,'Times New Roman',serif;font-size:17px;font-style:italic;color:#5a5648;">Signals</p>
+      <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#5a5648;letter-spacing:.06em;line-height:2.4;">
         KI · Tech · Finanzen · Auf Deutsch<br>
-        <a href="{{ unsubscribe }}" style="color:#3a3830;text-decoration:underline;">Abmelden</a>&nbsp;·&nbsp;<a href="#" style="color:#3a3830;text-decoration:none;">Themen ändern</a>&nbsp;·&nbsp;<a href="#" style="color:#3a3830;text-decoration:none;">Impressum</a>&nbsp;·&nbsp;<a href="#" style="color:#3a3830;text-decoration:none;">Datenschutz</a>
+        <a href="{{ unsubscribe }}" style="color:#7a7468;text-decoration:underline;">Abmelden</a>&nbsp;·&nbsp;<a href="#" style="color:#7a7468;text-decoration:none;">Themen ändern</a>&nbsp;·&nbsp;<a href="#" style="color:#7a7468;text-decoration:none;">Impressum</a>&nbsp;·&nbsp;<a href="#" style="color:#7a7468;text-decoration:none;">Datenschutz</a>
       </p>
     </td>
   </tr>
   <tr><td style="height:28px;background-color:#ece9e2;font-size:0;line-height:0;">&nbsp;</td></tr>
 
 </table>
-
 </td></tr>
 </table>
 </body>
