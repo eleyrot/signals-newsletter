@@ -415,7 +415,7 @@
   <div class="nav-logo">Signals</div>
   <div class="nav-pill">
     <span class="live-dot"></span>
-    Monatlich erscheinend
+    Wöchentlich erscheinend
   </div>
 </nav>
 
@@ -429,7 +429,7 @@
     Die wichtigsten<br><em>Signale.</em>
   </h1>
 
-  <p class="hero-sub reveal reveal-d2">Auf Deutsch. Jeden Monat.</p>
+  <p class="hero-sub reveal reveal-d2">Auf Deutsch. Jeden Samstag.</p>
 
   <div class="hero-badges reveal reveal-d3">
     <div class="hero-badge">Kostenlos starten</div>
@@ -542,8 +542,8 @@
     </div>
     <div class="why-card reveal reveal-d1">
       <div class="why-num">02</div>
-      <div class="why-title">Monatlich. Kein Overload.</div>
-      <div class="why-text">Nicht täglich, nicht stündlich. Einmal pro Monat die wirklich relevanten Entwicklungen — lesbar in fünf Minuten.</div>
+      <div class="why-title">Wöchentlich. Kein Overload.</div>
+      <div class="why-text">Nicht täglich, nicht stündlich. Einmal pro Woche die wirklich relevanten Entwicklungen — lesbar in fünf Minuten.</div>
     </div>
     <div class="why-card reveal reveal-d2">
       <div class="why-num">03</div>
@@ -563,13 +563,14 @@
 </footer>
 
 <script>
-  /* ── Next issue date ── */
+  /* ── Next issue date (next Saturday) ── */
   (function() {
     const months = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
     const now = new Date();
-    const next = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    const diff = (6 - now.getDay() + 7) % 7 || 7;
+    const next = new Date(now); next.setDate(now.getDate() + diff);
     const el = document.getElementById('next-issue-date');
-    if (el) el.textContent = '1. ' + months[next.getMonth()] + ' ' + next.getFullYear();
+    if (el) el.textContent = 'Samstag, ' + next.getDate() + '. ' + months[next.getMonth()] + ' ' + next.getFullYear();
   })();
 
   /* ── Scroll animations ── */
