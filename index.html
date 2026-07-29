@@ -27,7 +27,7 @@
       --gold:    #c9a55a;
       --gold-dim:#7a6135;
       --text:    #e4e0d8;
-      --muted:   #5a5850;
+      --muted:   #948f80;
       --light-bg:#f7f6f2;
       --light-border:#e8e4da;
       --dark-text:#0f0e0b;
@@ -150,7 +150,7 @@
     }
     .hero-badge {
       display: flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 300; color: #7a7468;
+      font-size: 13px; font-weight: 300; color: var(--muted);
     }
     .hero-badge::before {
       content: ''; width: 4px; height: 4px;
@@ -187,13 +187,13 @@
       display: flex; flex-direction: column; align-items: center; gap: 12px;
     }
     .sources-label {
-      font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #5a5648;
+      font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
     }
     .sources-list {
       display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;
     }
     .sources-list span {
-      font-size: 11.5px; font-weight: 300; color: #5a5648; letter-spacing: .04em;
+      font-size: 11.5px; font-weight: 300; color: var(--muted); letter-spacing: .04em;
     }
     .sources-list .sep { color: #3a3830; }
 
@@ -218,7 +218,7 @@
     .topic-card:hover { background: #111219; }
     .topic-icon {
       font-size: 28px; margin-bottom: 20px; display: block;
-      filter: grayscale(0.2);
+      color: var(--gold); filter: grayscale(0.2);
     }
     .topic-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
@@ -232,7 +232,7 @@
     .topic-count {
       margin-top: 20px;
       font-size: 11px; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--gold-dim);
+      text-transform: uppercase; color: var(--gold);
     }
     @media (max-width: 640px) {
       .topics-grid { grid-template-columns: 1fr; }
@@ -247,6 +247,7 @@
       font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 20px; text-align: center;
     }
+    .form-section .form-eyebrow { color: #8a6a2e; }
     .form-section h2 {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: clamp(36px, 5vw, 54px);
@@ -267,7 +268,7 @@
     .form-label {
       display: block; font-size: 10px; font-weight: 500;
       letter-spacing: .14em; text-transform: uppercase;
-      color: #9a9282; margin-bottom: 12px;
+      color: #6b6858; margin-bottom: 12px;
     }
     .topic-btns {
       display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
@@ -324,7 +325,7 @@
     .btn-submit:hover { background: #1e1d18; }
     .form-trust {
       margin-top: 14px; text-align: center;
-      font-size: 11.5px; font-weight: 300; color: #bdb5a8; letter-spacing: .02em;
+      font-size: 11.5px; font-weight: 300; color: #7a7468; letter-spacing: .02em;
     }
     .success-state {
       display: none; text-align: center; padding: 24px 0;
@@ -371,7 +372,7 @@
     .why-num {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 42px; font-weight: 400; font-style: italic;
-      color: var(--gold-dim); margin-bottom: 20px; line-height: 1;
+      color: var(--gold); margin-bottom: 20px; line-height: 1;
     }
     .why-title {
       font-size: 14px; font-weight: 500; letter-spacing: .04em;
@@ -427,11 +428,11 @@
       color: var(--muted); margin-bottom: 14px;
     }
     footer p {
-      font-size: 11.5px; font-weight: 300; color: #5a5648;
+      font-size: 11.5px; font-weight: 300; color: var(--muted);
       letter-spacing: .04em; line-height: 2;
     }
-    footer a { color: #5a5648; text-decoration: none; }
-    footer a:hover { color: var(--muted); }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
 
     /* ── DIVIDER LINE ── */
     .section-line {
